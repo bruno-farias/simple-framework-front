@@ -1,12 +1,12 @@
 /**
  * Created by bruno on 27/06/16.
  */
-lightSpeedApp.controller('homeController', ['$scope', 'productsService', function ($scope, productsService) {
+lightSpeedApp.controller('homeController', ['$scope', '$resource', 'productsService', function ($scope, $resource, productsService) {
 
-    $scope.product = productsService.product;
 
-    $scope.$watch('product', function () {
-        productsService.product = $scope.product;
-    });
-    
+
+
+    $scope.products = productsService.products;
+
+
 }]);
