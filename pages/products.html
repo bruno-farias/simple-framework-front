@@ -1,0 +1,33 @@
+<div class="row">
+
+    <div class="col-md-3">
+        <p class="lead">Wine Shop LightSpeed</p>
+        <div class="list-group" ng-controller="categoriesController as vm">
+            <a ng-repeat="category in categories" href="#/products/{{category.category}}" class="list-group-item">{{category.category}}</a>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+
+        <div class="row">
+
+            <div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="product in products">
+                <div class="thumbnail">
+                    <img src="http://loremflickr.com/320/150/wine,bottle/all" alt="">
+                    <div class="caption">
+                        <h4 class="pull-right">$ {{product.price}}</h4>
+                        <h4 class="text-limit"><a href="#">{{ product.product }}</a></h4>
+                        <h5><strong>Category</strong>: {{product.category}}</h5>
+                        <p>{{product.text}}</p>
+                    </div>
+                    <div class="text-right buy-btn">
+                        <a href="#" class="btn btn-success">Buy now</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
