@@ -54,8 +54,8 @@
                     </td>
                     <td class="text-right">
                         <h5>
-                            <strong>{{discountValue | currency}}</strong>
-                            <small>({{discountPercentFormated}} %)</small>
+                            <strong>{{getTotalDiscount() | currency}}</strong>
+                            <small>({{getDiscountFormated()}} %)</small>
                         </h5>
                     </td>
                 </tr>

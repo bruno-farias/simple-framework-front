@@ -46,6 +46,10 @@ lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routePa
         cartService.removeItem(product);
     };
 
+    /**
+     * Makes a request to API to validate the coupon
+     * @param coupon
+     */
     $scope.checkDiscount = function (coupon) {
         this.wineAPI = $resource('http://lightspeed.app/coupons/search/' + coupon);
         var res = this.wineAPI.query();
@@ -58,6 +62,10 @@ lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routePa
         });
     };
 
+    /**
+     * Applies the coupons discount
+     * @param discount
+     */
     $scope.applyDiscount = function (discount) {
         $scope.discountPercentFormated = discount;
         $scope.discountValue = cartService.applyDiscount(discount);
@@ -80,12 +88,28 @@ lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routePa
         return cartService.getItems();
     };
 
+    /**
+     * Returns the total amount of products without discount
+     * @returns {*}
+     */
     $scope.getSubTotal = function () {
         return cartService.getSubtotal();
     };
 
+    /**
+     * Returns the amount of discount in currency value
+     * @returns {*}
+     */
     $scope.getTotalDiscount = function () {
         return cartService.applyDiscount();
+    };
+
+    /**
+     * Returns the percentage of discount given by coupon
+     * @returns {*}
+     */
+    $scope.getDiscountFormated = function () {
+        return cartService.getDiscountFormated();
     };
 
     /**
@@ -93,7 +117,7 @@ lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routePa
      * @returns {*}
      */
     $scope.getTotal = function () {
-        return parseFloat($scope.getSubTotal()) - parseFloat($scope.discountValue);
+        return parseFloat($scope.getSubTotal()) - parseFloat($scope.getTotalDiscount());
     };
 
 }]);

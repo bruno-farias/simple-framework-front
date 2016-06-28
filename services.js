@@ -90,6 +90,9 @@ lightSpeedApp.service('cartService', ['$resource', function ($resource) {
 
             return vm.discountAmount;
         },
+        getDiscountFormated : function () {
+            return vm.discount;
+        },
         /**
          * Calculate the total of a all products x quantity
          * @returns {string}
