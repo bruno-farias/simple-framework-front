@@ -1,7 +1,7 @@
 /**
  * Created by bruno on 27/06/16.
  */
-lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routeParams', function ($scope, $resource, $routeParams) {
+lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routeParams', 'cartService', function ($scope, $resource, $routeParams, cartService) {
 
     var categoryFilter = $routeParams.category;
     
@@ -11,6 +11,27 @@ lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routePa
         $scope.wineAPI = $resource('http://lightspeed.app/products/category/'+categoryFilter);
 
     $scope.products = $scope.wineAPI.query();
+
+
+    
+    $scope.add = function (product) {
+        cartService.addItem(product);
+        console.log(cartService.getItems());
+    };
+
+    $scope.remove = function (product) {
+        cartService.removeItem(product);
+    };
+
+    $scope.getCartItems = function () {
+        return cartService.getItems();
+    };
+
+    $scope.getTotal = function () {
+        return cartService.getTotal();
+    };
+
+
 
 }]);
 

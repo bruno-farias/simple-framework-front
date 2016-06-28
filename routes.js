@@ -15,6 +15,6 @@ lightSpeedApp.config(function ($routeProvider) {
         .when('/cart', {
             templateUrl: 'pages/cart.html',
             controller: 'productsController'
-        })
+        });
 
 });
