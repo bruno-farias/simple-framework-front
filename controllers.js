@@ -131,7 +131,7 @@ lightSpeedApp.controller('categoriesController', ['$scope', '$resource', 'catego
 
 }]);
 
-lightSpeedApp.controller('ordersController', ['$scope', '$resource', 'cartService', function ($scope, $resource, cartService) {
+lightSpeedApp.controller('ordersController', ['$scope', '$http', 'cartService', function ($scope, $http, cartService) {
 
     //vars
     $scope.sameAddresses = false;
@@ -163,7 +163,19 @@ lightSpeedApp.controller('ordersController', ['$scope', '$resource', 'cartServic
      * Process the form
      */
     $scope.processForm = function () {
+
         
-    }
+
+        $http({
+            method  : 'POST',
+            url     : 'http://lightspeed.app/orders',
+            data    : $.param($scope.formData),
+            headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+            .success(function (data) {
+                console.log(data);
+            })
+
+    };
 
 }]);
