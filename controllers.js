@@ -130,3 +130,40 @@ lightSpeedApp.controller('categoriesController', ['$scope', '$resource', 'catego
     $scope.categories = categoriesService.categories;
 
 }]);
+
+lightSpeedApp.controller('ordersController', ['$scope', '$resource', 'cartService', function ($scope, $resource, cartService) {
+
+    //vars
+    $scope.sameAddresses = false;
+    $scope.formData = {};
+    $scope.formData.sameAddresses = $scope.sameAddresses;
+    $scope.formData.cart = cartService.getItems();
+    $scope.formData.totalSubTotal = $scope.getSubTotal();
+    $scope.formData.totalDiscount = $scope.getDiscountFormated();
+    $scope.formData.totalAmount = $scope.getTotal();
+
+    /**
+     * Setter for sameAddress var
+     * @param value
+     */
+    $scope.setSameAddress = function (value) {
+        $scope.sameAddresses = value;
+        $scope.formData.sameAddresses = $scope.sameAddresses;
+    };
+
+    /**
+     * Getter for sameAddress var
+     * @returns {*|boolean}
+     */
+    $scope.getSameAddress = function () {
+        return $scope.sameAddresses;
+    };
+
+    /**
+     * Process the form
+     */
+    $scope.processForm = function () {
+        
+    }
+
+}]);
