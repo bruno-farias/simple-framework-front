@@ -15,6 +15,10 @@ lightSpeedApp.config(function ($routeProvider) {
         .when('/cart', {
             templateUrl: 'pages/cart.html',
             controller: 'productsController'
-        });
+        })
+        .when('/checkout', {
+            templateUrl: 'pages/checkout.html',
+            controller: 'productsController'
+        })
 
 });

@@ -63,3 +63,15 @@ footer {
 .buy-btn {
     padding: 5px;
 }
+
+img.center {
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 150px;
+}
+
+.img-product {
+    max-width: 320px;
+    max-height: 150px;
+}
