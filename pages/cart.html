@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row">
+    <div class="row" ng-if="getCartItems().length > 0">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
             <table class="table table-hover">
                 <thead>
@@ -23,49 +23,45 @@
                             </div>
                         </div></td>
                     <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="">
+                        <input type="number"  min="1" class="form-control" ng-model="product.quantity" ng-change="change(product)">
                     </td>
-                    <td class="col-sm-1 col-md-1 text-center"><strong>$ {{product.price}}</strong></td>
-                    <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
+                    <td class="col-sm-1 col-md-1 text-center"><strong>{{product.price | currency}}</strong></td>
+                    <td class="col-sm-1 col-md-1 text-center"><strong>{{getSubtotal(product) | currency}}</strong></td>
                     <td class="col-sm-1 col-md-1">
                         <input type="hidden" ng-model="product" value="{{product}}">
                         <button type="button" class="btn btn-danger" ng-click="remove(product)">
                             <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
+                        </button>
+                    </td>
                 </tr>
                 <tr>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>   </td>
+                    <td colspan="2"></td>
                     <td><h5>Subtotal</h5></td>
-                    <td class="text-right"><h5><strong>$24.59</strong></h5></td>
+                    <td></td>
+                    <td class="text-right"><h5><strong>{{getTotal() | currency}}</strong></h5></td>
                 </tr>
                 <tr>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>   </td>
-                    <td><h5>Estimated shipping</h5></td>
-                    <td class="text-right"><h5><strong>$6.94</strong></h5></td>
+                    <td colspan="3" class="text-right"><h5>Enter discount coupon:</h5></td>
+                    <td><input class="form-control" type="text"></td>
+                    <td class="text-right"><h5><strong>$ </strong></h5></td>
                 </tr>
                 <tr>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>   </td>
+                    <td colspan="3"></td>
                     <td><h3>Total</h3></td>
-                    <td class="text-right"><h3><strong>$ {{getTotal()}}</strong></h3></td>
+                    <td class="text-right"><h3><strong>{{getTotal() | currency}}</strong></h3></td>
                 </tr>
                 <tr>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>   </td>
+                    <td colspan="3"></td>
                     <td>
                         <a href="#/" class="btn btn-default">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                        </a></td>
+                        </a>
+                    </td>
                     <td>
                         <button type="button" class="btn btn-success">
                             Checkout <span class="glyphicon glyphicon-play"></span>
-                        </button></td>
+                        </button>
+                    </td>
                 </tr>
                 </tbody>
             </table>

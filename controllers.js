@@ -12,26 +12,45 @@ lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routePa
 
     $scope.products = $scope.wineAPI.query();
 
-
-    
+    /**
+     *
+     * @param product
+     */
     $scope.add = function (product) {
         cartService.addItem(product);
-        console.log(cartService.getItems());
     };
 
+    $scope.change = function (product) {
+        cartService.changeQuantity(product);
+    };
+
+    /**
+     * Remove a product from cart
+     * @param product
+     */
     $scope.remove = function (product) {
         cartService.removeItem(product);
     };
 
+    $scope.getSubtotal = function (product) {
+        return cartService.getSubtotal(product);
+    };
+
+    /**
+     * List all items available in cart
+     * @returns {*}
+     */
     $scope.getCartItems = function () {
         return cartService.getItems();
     };
 
+    /**
+     * Get the sum of items price
+     * @returns {*}
+     */
     $scope.getTotal = function () {
         return cartService.getTotal();
     };
-
-
 
 }]);
 
