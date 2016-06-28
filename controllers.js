@@ -35,6 +35,7 @@ lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routePa
      */
     $scope.change = function (product) {
         cartService.changeQuantity(product);
+        $scope.applyDiscount();
     };
 
     /**
@@ -58,6 +59,7 @@ lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routePa
     };
 
     $scope.applyDiscount = function (discount) {
+        $scope.discountPercentFormated = discount;
         $scope.discountValue = cartService.applyDiscount(discount);
     };
 
@@ -66,8 +68,8 @@ lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routePa
      * @param product
      * @returns {*}
      */
-    $scope.getSubtotal = function (product) {
-        return cartService.getSubtotal(product);
+    $scope.getProductSubtotal = function (product) {
+        return cartService.getProductSubtotal(product);
     };
 
     /**
@@ -78,12 +80,16 @@ lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routePa
         return cartService.getItems();
     };
 
+    $scope.getSubTotal = function () {
+        return cartService.getSubtotal();
+    };
+
     /**
      * Get the sum of items price
      * @returns {*}
      */
     $scope.getTotal = function () {
-        return cartService.getTotal();
+        return parseFloat($scope.getSubTotal()) - parseFloat($scope.discountValue);
     };
 
 }]);

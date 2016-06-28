@@ -26,7 +26,7 @@
                         <input type="number"  min="1" class="form-control" ng-model="product.quantity" ng-change="change(product)">
                     </td>
                     <td class="col-sm-1 col-md-1 text-center"><strong>{{product.price | currency}}</strong></td>
-                    <td class="col-sm-1 col-md-1 text-center"><strong>{{getSubtotal(product) | currency}}</strong></td>
+                    <td class="col-sm-1 col-md-1 text-center"><strong>{{getProductSubtotal(product) | currency}}</strong></td>
                     <td class="col-sm-1 col-md-1">
                         <input type="hidden" ng-model="product" value="{{product}}">
                         <button type="button" class="btn btn-danger" ng-click="remove(product)">
@@ -38,7 +38,7 @@
                     <td colspan="2"></td>
                     <td><h5>Subtotal</h5></td>
                     <td></td>
-                    <td class="text-right"><h5><strong>{{getTotal() | currency}}</strong></h5></td>
+                    <td class="text-right"><h5><strong>{{getSubTotal() | currency}}</strong></h5></td>
                 </tr>
                 <tr>
                     <td colspan="3" class="text-right"><h5>Enter discount coupon:</h5></td>
@@ -55,7 +55,7 @@
                     <td class="text-right">
                         <h5>
                             <strong>{{discountValue | currency}}</strong>
-                            <small ng-if="discountPercent > 0">({{discountPercentFormated}} %)</small>
+                            <small>({{discountPercentFormated}} %)</small>
                         </h5>
                     </td>
                 </tr>

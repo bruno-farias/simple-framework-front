@@ -9,6 +9,7 @@ lightSpeedApp.service('cartService', ['$resource', function ($resource) {
     vm.cart = [];
     vm.subtotal = 0;
     vm.discount = 0;
+    vm.discountAmount = 0;
 
     return {
 
@@ -68,29 +69,33 @@ lightSpeedApp.service('cartService', ['$resource', function ($resource) {
          * @param product
          * @returns {number}
          */
-        getSubtotal : function (product) {
+        getProductSubtotal : function (product) {
             for (var x = 0; x < vm.cart.length; x++) {
                 if (vm.cart[x].id == product.id)
                     return vm.cart[x].quantity * vm.cart[x].price;
             }
         },
+        getSubtotal : function () {
+            var total = 0;
+            for (var x = 0; x < vm.cart.length; x++) {
+                total += vm.cart[x].quantity * vm.cart[x].price;
+            }
+            return total;
+        },
         applyDiscount : function (discount) {
             if (typeof discount != 'undefined') {
                 vm.discount = discount;
             }
+            vm.discountAmount = parseFloat(this.getSubtotal()) * (parseFloat(vm.discount) / 100);
 
-            return parseFloat(vm.subtotal) * (parseFloat(vm.discount) / 100);
+            return vm.discountAmount;
         },
         /**
          * Calculate the total of a all products x quantity
          * @returns {string}
          */
         getTotal: function () {
-            var total = 0;
-            for (var x = 0; x < vm.cart.length; x++) {
-                total += vm.cart[x].price * vm.cart[x].quantity;
-            }
-            return parseFloat(total).toFixed(2);
+            return parseFloat(this.getSubtotal) - parseFloat(vm.discountAmount);
         }
     };
 
