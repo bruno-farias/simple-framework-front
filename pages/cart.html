@@ -42,8 +42,22 @@
                 </tr>
                 <tr>
                     <td colspan="3" class="text-right"><h5>Enter discount coupon:</h5></td>
-                    <td><input class="form-control" type="text" ng-model="discount"></td>
-                    <td class="text-right"><h5><strong> </strong></h5></td>
+                    <td>
+                        <div class="form-group">
+                            <div class="col-sm-12 col-md-9">
+                                <input class="form-control" type="text" ng-model="discount">
+                            </div>
+                            <div class="col-sm-12 col-md-3">
+                                <button class="btn btn-default" ng-click="checkDiscount(discount)">Apply</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <h5>
+                            <strong>{{discountValue | currency}}</strong>
+                            <small ng-if="discountPercent > 0">({{discountPercentFormated}} %)</small>
+                        </h5>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="3"></td>

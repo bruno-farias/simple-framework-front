@@ -15,14 +15,24 @@ lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routePa
 
     $scope.products = $scope.wineAPI.query();
 
+    $scope.discountPercent = 0.00;
+    $scope.discountPercentFormated = 0;
+    $scope.discountValue = 0;
+    $scope.subTotal = 0;
+    $scope.cartTotal = 0;
+
     /**
-     *
+     * Add an item to cart
      * @param product
      */
     $scope.add = function (product) {
         cartService.addItem(product);
     };
 
+    /**
+     * Change an item quantity on cart
+     * @param product
+     */
     $scope.change = function (product) {
         cartService.changeQuantity(product);
     };
@@ -33,6 +43,22 @@ lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routePa
      */
     $scope.remove = function (product) {
         cartService.removeItem(product);
+    };
+
+    $scope.checkDiscount = function (coupon) {
+        this.wineAPI = $resource('http://lightspeed.app/coupons/search/' + coupon);
+        var res = this.wineAPI.query();
+        res.$promise.then(function (result) {
+            var discount = result[0];
+
+            if (discount.count <= discount.count_limit) {
+                $scope.applyDiscount(discount.discount);
+            }
+        });
+    };
+
+    $scope.applyDiscount = function (discount) {
+        $scope.discountValue = cartService.applyDiscount(discount);
     };
 
     /**

@@ -7,6 +7,8 @@ lightSpeedApp.service('cartService', ['$resource', function ($resource) {
     var vm = this;
 
     vm.cart = [];
+    vm.subtotal = 0;
+    vm.discount = 0;
 
     return {
 
@@ -71,6 +73,13 @@ lightSpeedApp.service('cartService', ['$resource', function ($resource) {
                 if (vm.cart[x].id == product.id)
                     return vm.cart[x].quantity * vm.cart[x].price;
             }
+        },
+        applyDiscount : function (discount) {
+            if (typeof discount != 'undefined') {
+                vm.discount = discount;
+            }
+
+            return parseFloat(vm.subtotal) * (parseFloat(vm.discount) / 100);
         },
         /**
          * Calculate the total of a all products x quantity
