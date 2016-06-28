@@ -84,6 +84,10 @@ lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routePa
         return cartService.getSubtotal();
     };
 
+    $scope.getTotalDiscount = function () {
+        return cartService.applyDiscount();
+    };
+
     /**
      * Get the sum of items price
      * @returns {*}

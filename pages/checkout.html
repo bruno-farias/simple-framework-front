@@ -32,18 +32,18 @@
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <strong>Subtotal</strong>
-                                <div class="pull-right">{{getTotal() | currency}}</div>
+                                <div class="pull-right">{{getSubTotal() | currency}}</div>
                             </div>
                             <div class="col-xs-12">
                                 <small>Discount</small>
-                                <div class="pull-right"><span>-</span></div>
+                                <div class="pull-right"><span>{{getTotalDiscount() | currency}}</span></div>
                             </div>
                         </div>
                         <div class="form-group"><hr /></div>
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <strong>Order Total</strong>
-                                <div class="pull-right">{{getTotal() | currency}}</div>
+                                <div class="pull-right">{{getTotal() - getTotalDiscount() | currency}}</div>
                             </div>
                         </div>
                     </div>
