@@ -1,6 +1,9 @@
 /**
  * Created by bruno on 27/06/16.
  */
+/**
+ * Products Controller
+ */
 lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routeParams', 'cartService', function ($scope, $resource, $routeParams, cartService) {
 
     var categoryFilter = $routeParams.category;
@@ -32,6 +35,11 @@ lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routePa
         cartService.removeItem(product);
     };
 
+    /**
+     * Return the product subtotal
+     * @param product
+     * @returns {*}
+     */
     $scope.getSubtotal = function (product) {
         return cartService.getSubtotal(product);
     };
@@ -54,6 +62,9 @@ lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routePa
 
 }]);
 
+/**
+ * Categories Controller
+ */
 lightSpeedApp.controller('categoriesController', ['$scope', '$resource', 'categoriesService', function ($scope, $resource, categoriesService) {
 
     $scope.categories = categoriesService.categories;
