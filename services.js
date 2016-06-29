@@ -2,6 +2,14 @@
  * Created by bruno on 27/06/16.
  */
 
+/**
+ * This config var is self explanatory
+ * @type {{url: string}}
+ */
+var config = {
+    url: 'http://localhost:8080/'
+};
+
 lightSpeedApp.service('cartService', ['$resource', function ($resource) {
 
     var vm = this;
@@ -109,7 +117,7 @@ lightSpeedApp.service('cartService', ['$resource', function ($resource) {
  */
 lightSpeedApp.service('categoriesService', ['$resource', function ($resource) {
 
-    this.wineAPI = $resource('http://lightspeed.app/categories');
+    this.wineAPI = $resource(config.url + 'categories');
 
     this.categories = this.wineAPI.query();
 

@@ -1,6 +1,15 @@
 /**
  * Created by bruno on 27/06/16.
  */
+
+/**
+ * This config var is self explanatory
+ * @type {{url: string}}
+ */
+var config = {
+    url: 'http://localhost:8080/'
+};
+
 /**
  * Products Controller
  */
@@ -9,9 +18,9 @@ lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routePa
     var categoryFilter = $routeParams.category;
     
     if(typeof categoryFilter == 'undefined')
-        $scope.wineAPI = $resource('http://lightspeed.app/products');
+        $scope.wineAPI = $resource(config.url + 'products');
     else
-        $scope.wineAPI = $resource('http://lightspeed.app/products/category/'+categoryFilter);
+        $scope.wineAPI = $resource(config.url + 'products/category/'+categoryFilter);
 
     $scope.products = $scope.wineAPI.query();
 
@@ -51,7 +60,7 @@ lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routePa
      * @param coupon
      */
     $scope.checkDiscount = function (coupon) {
-        this.wineAPI = $resource('http://lightspeed.app/coupons/search/' + coupon);
+        this.wineAPI = $resource(config.url + 'coupons/search/' + coupon);
         var res = this.wineAPI.query();
         res.$promise.then(function (result) {
             var discount = result[0];
@@ -163,18 +172,16 @@ lightSpeedApp.controller('ordersController', ['$scope', '$http', 'cartService', 
      * Process the form
      */
     $scope.processForm = function () {
-
         
-
         $http({
             method  : 'POST',
-            url     : 'http://lightspeed.app/orders',
+            url     : config.url + 'orders',
             data    : $.param($scope.formData),
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
             .success(function (data) {
                 console.log(data);
-            })
+            });
 
     };
 
