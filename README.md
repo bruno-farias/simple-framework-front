@@ -1,5 +1,8 @@
 # eCom Dev Assessment (Frontend) - Bruno Farias
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bruno-farias/simple-framework-front/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bruno-farias/simple-framework-front/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/bruno-farias/simple-framework-front/badges/build.png?b=master)](https://scrutinizer-ci.com/g/bruno-farias/simple-framework-front/build-status/master)
+
 ### Requirements
 - Node.js running on your machine
 - NPM
