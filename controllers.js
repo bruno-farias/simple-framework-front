@@ -180,10 +180,7 @@ lightSpeedApp.controller('ordersController', ['$scope', '$http', 'cartService', 
             url     : config.url + 'orders',
             data    : $.param($scope.formData),
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
-        })
-            .success(function (data) {
-                
-            });
+        });
 
     };
 
