@@ -39,7 +39,6 @@ lightSpeedApp.service('cartService', [function () {
             product.quantity = 1;
             product.subtotal = parseFloat(product.price).toFixed(2);
             vm.cart.push(product);
-            return;
         },
         /**
          * Change the quantity of a given product and update the sum of products
@@ -86,7 +85,6 @@ lightSpeedApp.service('cartService', [function () {
                     return vm.cart[x].quantity * vm.cart[x].price;
                 }
             }
-            return;
         },
         getSubtotal : function () {
             var total = 0;
