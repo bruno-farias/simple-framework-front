@@ -13,14 +13,16 @@ var config = {
 /**
  * Products Controller
  */
+/** global: lightSpeedApp */
 lightSpeedApp.controller('productsController', ['$scope', '$resource', '$routeParams', 'cartService', function ($scope, $resource, $routeParams, cartService) {
 
     var categoryFilter = $routeParams.category;
     
-    if(typeof categoryFilter == 'undefined')
+    if (typeof categoryFilter == 'undefined') {
         $scope.wineAPI = $resource(config.url + 'products');
-    else
+    } else {
         $scope.wineAPI = $resource(config.url + 'products/category/'+categoryFilter);
+    }
 
     $scope.products = $scope.wineAPI.query();
 
@@ -180,7 +182,7 @@ lightSpeedApp.controller('ordersController', ['$scope', '$http', 'cartService', 
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
             .success(function (data) {
-                console.log(data);
+                
             });
 
     };

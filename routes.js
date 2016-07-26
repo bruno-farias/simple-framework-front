@@ -1,6 +1,7 @@
 /**
  * Created by bruno on 27/06/16.
  */
+/** global: lightSpeedApp */
 lightSpeedApp.config(function ($routeProvider) {
 
     $routeProvider

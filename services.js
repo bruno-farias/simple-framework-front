@@ -10,7 +10,8 @@ var config = {
     url: 'http://localhost:8080/'
 };
 
-lightSpeedApp.service('cartService', ['$resource', function ($resource) {
+/** global: lightSpeedApp */
+lightSpeedApp.service('cartService', [function () {
 
     var vm = this;
 
@@ -115,6 +116,7 @@ lightSpeedApp.service('cartService', ['$resource', function ($resource) {
 /**
  * Categories Service
  */
+/** global: lightSpeedApp */
 lightSpeedApp.service('categoriesService', ['$resource', function ($resource) {
 
     this.wineAPI = $resource(config.url + 'categories');
